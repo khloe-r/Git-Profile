@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="row">
-    <div class="text-center col-3 bg-dark text-white h-100" style="min-height: 100vh;">
-        <img class="mt-5 mb-2 rounded-circle" width="50%" src="https://avatars.githubusercontent.com/u/75541476?v=4"/>
-        <h1>Name</h1>
-        <h4>/username</h4>
-        <h6>Biography</h6>
-        <p>Location</p><p>Joined</p><p>Website</p>
+    <div class="text-center col-3 bg-dark text-white h-100 px-3" style="min-height: 100vh;">
+        <img class="mt-5 mb-2 rounded-circle" width="50%" src="{{ img }}"/>
+        <h1>{{ name }}</h1>
+        <h4>/{{ username }}</h4>
+        <h6>{{ bio }}</h6>
+        <p><span class="text-muted">Joined</span><br />{{ date }}</p>
+        <p class="text-muted">Website<br /> <a href="{{ web }}">{{ web }}</a></p>
         <div class="d-flex justify-content-evenly">
-            <h5>4<br />following</h5>
-            <h5>4<br />followers</h5>
+            <h5>{{ followers }}<br />following</h5>
+            <h5>{{ following }}<br />followers</h5>
+            <p>{{ langdict }}</p>
         </div>
         <div class="d-flex justify-content-center gap-3 mt-3">
-            <h1>12</h1>
+            <h1>{{ repos }}</h1>
             <p class="text-start mr-5">Public <br/> Repositories</p>
+        </div>
+    </div>
+    <div class="text-center col-9 text-white h-100 px-3" style="min-height: 100vh;">
+        <div class="chart" id="bargraph">
+            <script>
+                var graphs = {{plot | safe}};
+                Plotly.plot('bargraph',graphs,{});
+            </script>
         </div>
     </div>
 </div>
