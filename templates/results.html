@@ -13,20 +13,71 @@
         <div class="d-flex justify-content-evenly">
             <h5>{{ followers }}<br />following</h5>
             <h5>{{ following }}<br />followers</h5>
-            <p>{{ langdict }}</p>
         </div>
         <div class="d-flex justify-content-center gap-3 mt-3">
             <h1>{{ repos }}</h1>
             <p class="text-start mr-5">Public <br/> Repositories</p>
         </div>
     </div>
-    <div class="text-center col-9 text-white h-100 px-3" style="min-height: 100vh;">
-        <div class="chart" id="bargraph">
-            <script>
-                var graphs = {{plot | safe}};
-                Plotly.plot('bargraph',graphs,{});
-            </script>
+    <div class="text-center col-4 h-100 px-3" style="min-height: 100vh;">
+        <div>
+            <h3 class="mt-5">Languages Used</h3>
+            <div class="chart" id="piegraph">
+                <script>
+                    var graphs = {{plot | safe}};
+                    Plotly.plot('piegraph',graphs,{});
+
+                    var mySVG = document.querySelector('.main-svg');
+                    mySVG.setAttribute("viewBox", "0 90 450 450");
+                </script>
+            </div>
         </div>
+        <br/>
+        <div>
+            <h3>Most Starred Languages</h3>
+            <div class="chart" id="bargraph">
+                <script>
+                    var graphs = {{bar | safe}};
+                    Plotly.plot('bargraph',graphs,{});
+
+                    var mySVG = document.querySelector('.main-svg');
+                    mySVG.setAttribute("viewBox", "0 90 450 450");
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="text-center col-4 h-100 px-3" style="min-height: 100vh;">
+        <h3 class="mt-5">Recent Repos {{sorted}}</h3>
+        {%for repo in dates%}
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{repo.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Main Language: {{repo.lang}}</h6>
+              <p class="card-text">{{repo.descript}}</p>
+              <p>{{repos.stars}} Stars | {{repos.forks}} Forks | {{repo.watchers}} Watchers</p>
+              <a href="{{repos.view}}" target="_blank" rel="noopener noreferrer" class="card-link">View Repo</a>
+              
+              <a class="card-link" onclick="copyToClipboard('{{repos.clone}}')">Clone Repo (copy URL)</a>
+              <script>
+                    function copyToClipboard(text) {
+                        var dummy = document.createElement("textarea");
+                        // to avoid breaking orgain page when copying more words
+                        // cant copy when adding below this code
+                        // dummy.style.display = 'none'
+                        document.body.appendChild(dummy);
+                        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+                        dummy.value = text;
+                        dummy.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(dummy);
+                    }
+              </script>
+            </div>
+            <div class="card-footer text-muted">
+                Last updated on {{repo.updated}}
+              </div>
+          </div>
+          {%endfor%}
     </div>
 </div>
    
