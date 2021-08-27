@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row">
-    <div class="text-center col-3 bg-dark text-white h-100 px-3" style="min-height: 100vh;">
+    <div class="text-center col-3 bg-dark text-white h-100 px-3" style="min-height: 170vh;">
         <img class="mt-5 mb-2 rounded-circle" width="50%" src="{{ img }}"/>
         <h1>{{ name }}</h1>
         <h4>/{{ username }}</h4>
@@ -29,6 +29,9 @@
 
                     var mySVG = document.querySelector('.main-svg');
                     mySVG.setAttribute("viewBox", "0 90 450 450");
+                    mySVG.setAttribute("height", "300");
+                    var mySVG = document.querySelector('.user-select-none');
+                    mySVG.style.height = "300px"
                 </script>
             </div>
         </div>
@@ -47,9 +50,9 @@
         </div>
     </div>
     <div class="text-center col-4 h-100 px-3" style="min-height: 100vh;">
-        <h3 class="mt-5">Recent Repos {{sorted}}</h3>
+        <h3 class="mt-5">Recent Repos</h3>
         {%for repo in dates%}
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title">{{repo.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Main Language: {{repo.lang}}</h6>

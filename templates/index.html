@@ -3,10 +3,10 @@
 {% block content %}
    <h1 class="mt-5 text-center">Welcome to GitProfile!</h1>
    <h6 class="text-center mb-5">Discover more about your Github profile in one easy search!</h6>
-   <form class="row g-3 d-flex justify-content-center">
+   <form class="row g-3 d-flex justify-content-center" action="/results" method = "POST">
     <div class="col-auto">
       <label for="inputUsername" class="visually-hidden">Username</label>
-      <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+      <input name="username_value" type="text" class="form-control" id="inputUsername" placeholder="Username">
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary mb-3">Search</button>
