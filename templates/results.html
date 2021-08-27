@@ -9,10 +9,10 @@
         <h4>/{{ username }}</h4>
         <h6>{{ bio }}</h6>
         <p><span class="text-muted">Joined</span><br />{{ date }}</p>
-        <p class="text-muted">Website<br /> <a href="{{ web }}">{{ web }}</a></p>
+        <p class="text-muted">Website<br /> <a href="{{ web }}" target="_blank" rel="noopener noreferrer">{{ web }}</a></p>
         <div class="d-flex justify-content-evenly">
-            <h5>{{ followers }}<br />following</h5>
-            <h5>{{ following }}<br />followers</h5>
+            <h5>{{ following }}<br />following</h5>
+            <h5>{{ followers }}<br />followers</h5>
         </div>
         <div class="d-flex justify-content-center gap-3 mt-3">
             <h1>{{ repos }}</h1>
@@ -35,7 +35,7 @@
                 </script>
             </div>
         </div>
-        <br/>
+        <hr/>
         <div>
             <h3>Most Starred Languages</h3>
             <div class="chart" id="bargraph">
@@ -57,10 +57,10 @@
               <h5 class="card-title">{{repo.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Main Language: {{repo.lang}}</h6>
               <p class="card-text">{{repo.descript}}</p>
-              <p>{{repos.stars}} Stars | {{repos.forks}} Forks | {{repo.watchers}} Watchers</p>
-              <a href="{{repos.view}}" target="_blank" rel="noopener noreferrer" class="card-link">View Repo</a>
+              <p>{{repo.stars}} Stars | {{repo.forks}} Forks | {{repo.watchers}} Watchers</p>
+              <a href="{{repo.view}}" target="_blank" rel="noopener noreferrer" class="card-link">View Repo</a>
               
-              <a class="card-link" onclick="copyToClipboard('{{repos.clone}}')">Clone Repo (copy URL)</a>
+              <a class="card-link" onclick="copyToClipboard('{{repo.clone}}')">Clone Repo (copy URL)</a>
               <script>
                     function copyToClipboard(text) {
                         var dummy = document.createElement("textarea");

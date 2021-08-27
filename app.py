@@ -76,12 +76,13 @@ def results():
             LanguageURL = requests.get(repo['languages_url'])
             language_result = LanguageURL.json()
             for lang in language_result:
-                if lang in languages:
-                    languages[lang] += 1 #language_result[lang]
-                    stars[lang] += int(repo['stargazers_count'])
-                else:
-                    languages[lang] = 1 #language_result[lang]
-                    stars[lang] = int(repo['stargazers_count'])
+                if lang != "message" and lang != "documentation_url":
+                    if lang in languages:
+                        languages[lang] += 1 #language_result[lang]
+                        stars[lang] += int(repo['stargazers_count'])
+                    else:
+                        languages[lang] = 1 #language_result[lang]
+                        stars[lang] = int(repo['stargazers_count'])
 
         sorted = list(repo_dates)
         sorted.sort(key = lambda date: datetime.strptime(date, '%Y-%m-%d %H:%M:%S'), reverse=True)
@@ -90,13 +91,13 @@ def results():
             repos.append({
                 'name': repo_data['name'],
                 'lang': repo_data['language'],
-                'descript': repo_data['description'],
+                'descript': (repo_data['description'] if repo_data['description'] != "None" else ""),
                 'forks': repo_data['forks_count'],
                 'stars': repo_data['stargazers_count'],
                 'watchers': repo_data['watchers_count'],
                 'view': repo_data['html_url'],
                 'clone': repo_data['clone_url'],
-                'updated': repo_data['updated_at'][0:10]
+                'updated': datetime.strptime(repo_data['updated_at'][0:10], '%Y-%m-%d').strftime("%B %d, %Y")
                 })
 
         pie = create_pie(languages)
