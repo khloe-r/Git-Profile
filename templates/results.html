@@ -59,8 +59,10 @@
               <p class="card-text">{{repo.descript}}</p>
               <p>{{repo.stars}} Stars | {{repo.forks}} Forks | {{repo.watchers}} Watchers</p>
               <a href="{{repo.view}}" target="_blank" rel="noopener noreferrer" class="card-link">View Repo</a>
-              
               <a class="card-link" onclick="copyToClipboard('{{repo.clone}}')">Clone Repo (copy URL)</a>
+              <div class="alert alert-success mt-4" id="success-box" role="alert" style="display:none">
+                Link copied successfully!
+              </div>
               <script>
                     function copyToClipboard(text) {
                         var dummy = document.createElement("textarea");
@@ -73,6 +75,9 @@
                         dummy.select();
                         document.execCommand("copy");
                         document.body.removeChild(dummy);
+                        var alert = document.getElementById('success-box')
+                        alert.style.display = 'block'
+                        setTimeout(function(){ alert.style.display="none" }, 3000);
                     }
               </script>
             </div>

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h1 class="mt-5 text-center">Error! {{ error }}</h1>
+   <div class="d-flex justify-content-center">
+   <a href="{{ url_for('index') }}"><button class="btn btn-primary mb-3">Try Again!</button></a>
+  </div>
+{% endblock %}
