@@ -1,10 +1,10 @@
 # GitProfile
 
-Github Profile viewer built using `Flask` for the backend and `HTML`/`CSS` templates for the frontend.
+GitHub Profile viewer built using `Flask` for the backend and `HTML`/`CSS` templates for the frontend.
 
 ## Features
 
-- Searches `Github API` for user profile and returns data in an easy-to-view format
+- Searches `GitHub API` for user profile and returns data in an easy-to-view format
 - Displays most recent repositories and other profile information using `Plotly` graphs
 - Includes error page when users are not found
 
