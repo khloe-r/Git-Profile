@@ -52,7 +52,7 @@ def create_plot(stars):
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
-@app.route('/form')
+@app.route('/')
 def index():
     return render_template('index.html')
 
