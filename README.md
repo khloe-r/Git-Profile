@@ -5,8 +5,9 @@ GitHub Profile viewer built using `Flask` for the backend and `HTML`/`CSS` templ
 ## Features
 
 - Searches `GitHub API` for user profile and returns data in an easy-to-view format
-- Displays most recent repositories and other profile information using `Plotly` graphs
+- Displays most recent repositories and other profile information using `Pandas` and graphs with `Plotly`
 - Includes error page when users are not found
+- Deployed and hosted on Heroku [here](https://git-profile-analysis.herokuapp.com/)
 
 ## Preview
 
